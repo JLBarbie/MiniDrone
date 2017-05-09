@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="logo-home.jpg">images/LOGO-PARROT-300x300.jpg</file>
+    </qresource>
+</RCC>
