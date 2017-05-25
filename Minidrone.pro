@@ -29,11 +29,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
         dronecontroller.cpp \
-        leapdevice.cpp
+        leapdevice.cpp \
+    drone.cpp
 
 HEADERS  += mainwindow.h \
         dronecontroller.h \
         leapdevice.h \
-        leapeventlistener.h
+        leapeventlistener.h \
+    drone.h
 
 FORMS    += mainwindow.ui

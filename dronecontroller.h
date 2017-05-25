@@ -2,6 +2,8 @@
 #define DRONECONTROLLER_H
 
 #include <QString>
+#include <QObject>
+#include "drone.h"
 
 // Vertical movement
 #define UP
@@ -18,11 +20,49 @@
 // Infos
 #define BATTERY 
 
-class DroneController
+struct Cmd {
+    QString handle;
+    QString value;
+    bool response;
+};
+
+class DroneController : public QObject
 {
+    Q_OBJECT
 public:
     DroneController();
-    DroneController(QString UUID);
+    DroneController(Drone *drone);
+    ~DroneController();
+
+public:
+    bool forward();
+    bool backward();
+    bool right();
+    bool left();
+
+    bool up();
+    bool down();
+
+    bool clock();
+    bool reverse_clock();
+
+    bool landing(); // Atterrissage
+    bool emergency(); // Urgence
+    bool takeoff(); // Decollage
+
+private:
+    void storeCmd(QString handle, QString value, bool response = false);
+    void send();
+
+private slots:
+    void serviceDiscovered(const QBluetoothUuid &gatt);
+    void deviceConnected();
+    void deviceDisconnected();
+    void controllerError(QLowEnergyController::Error error);
+
+private:
+    QQueue<Cmd> commands;
+    QLowEnergyController *m_control;
 };
 
 #endif // DRONECONTROLLER_H

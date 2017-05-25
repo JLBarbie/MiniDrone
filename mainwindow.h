@@ -5,8 +5,12 @@
 #include <QKeyEvent>
 #include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
 #include <QDebug>
+#include <QComboBox>
 
 #include "leapdevice.h"
+#include "drone.h"
+#include "dronecontroller.h"
+
 
 #include <iostream>
 
@@ -32,12 +36,18 @@ private:
     void leapLoop();
 
 private slots :
-    void deviceDiscovered(const QBluetoothDeviceInfo &device);
+    void deviceDiscovered(QBluetoothDeviceInfo device);
     void on_tabWidget_currentChanged(int index);
+
+    void on_pushButton_clicked();
+
+    void on_connectButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     LeapDevice *leap;
+    DroneController *controller;
+    QMap<QString, QBluetoothAddress> devices;
 };
 
 #endif // MAINWINDOW_H

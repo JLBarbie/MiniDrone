@@ -55,24 +55,6 @@
          <string>Connection</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="ListMAC">
-        <property name="geometry">
-         <rect>
-          <x>237</x>
-          <y>350</y>
-          <width>301</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="currentText">
-         <string extracomment="Adresse MAC">Adresse MAC</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Adresse MAC</string>
-         </property>
-        </item>
-       </widget>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
@@ -88,6 +70,43 @@
         <property name="pixmap">
          <pixmap resource="ressources.qrc">:/logo-home.jpg</pixmap>
         </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>238</x>
+          <y>351</y>
+          <width>301</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QComboBox" name="ListMAC">
+           <property name="currentText">
+            <string extracomment="Adresse MAC">Adresse MAC</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Adresse MAC</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>R</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="keyboard">

@@ -28,10 +28,11 @@ void MainWindow::startDeviceDiscovery()
     //...
 }
 
-void MainWindow::deviceDiscovered(const QBluetoothDeviceInfo &device)
+void MainWindow::deviceDiscovered(QBluetoothDeviceInfo device)
 {
     qDebug() << "Found new device:" << device.name() << '(' << device.address().toString() << ')';
-    ui->ListMAC->addItem(device.address().toString());
+    devices.insert(device.name(), device.address());
+    ui->ListMAC->addItem(device.name());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -80,7 +81,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             qDebug("Emergency");
             break;
         case Qt::Key_Space:
-            //self.drone.takeoff()
+            controller->takeoff();
             qDebug("Take Off");
             break;
         case Qt::Key_O:
@@ -136,7 +137,6 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
 }
 
-
 void MainWindow::leapLoop()
 {
     coord pos;
@@ -146,4 +146,15 @@ void MainWindow::leapLoop()
 void MainWindow::connectLeap()
 {
     leap = new LeapDevice();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    startDeviceDiscovery();
+}
+
+void MainWindow::on_connectButton_clicked()
+{
+    Drone *drone = new Drone(devices.value(ui->ListMAC->currentText()));
+    controller = new DroneController(drone);
 }
