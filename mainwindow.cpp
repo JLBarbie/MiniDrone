@@ -1,6 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QLCDNumber>
+
+/*!
+ * \brief MainWindow::MainWindow
+ * \param parent
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,11 +15,17 @@ MainWindow::MainWindow(QWidget *parent) :
     startDeviceDiscovery();
 }
 
+/*!
+ * \brief MainWindow::~MainWindow
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/*!
+ * \brief MainWindow::startDeviceDiscovery
+ */
 void MainWindow::startDeviceDiscovery()
 {
 
@@ -28,6 +40,10 @@ void MainWindow::startDeviceDiscovery()
     //...
 }
 
+/*!
+ * \brief MainWindow::deviceDiscovered
+ * \param device
+ */
 void MainWindow::deviceDiscovered(QBluetoothDeviceInfo device)
 {
     qDebug() << "Found new device:" << device.name() << '(' << device.address().toString() << ')';
@@ -35,6 +51,10 @@ void MainWindow::deviceDiscovered(QBluetoothDeviceInfo device)
     ui->ListMAC->addItem(device.name());
 }
 
+/*!
+ * \brief MainWindow::keyPressEvent
+ * \param event
+ */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
@@ -96,6 +116,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
+/*!
+ * \brief MainWindow::keyReleaseEvent
+ * \param event
+ */
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
     int key = event->key();
@@ -121,6 +145,10 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
+/*!
+ * \brief MainWindow::on_tabWidget_currentChanged
+ * \param index
+ */
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     switch (index) {
@@ -137,24 +165,53 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
 }
 
+/*!
+ * \brief MainWindow::leapLoop
+ */
 void MainWindow::leapLoop()
 {
     coord pos;
     pos = leap->getPos();
 }
 
+/*!
+ * \brief MainWindow::connectLeap
+ */
 void MainWindow::connectLeap()
 {
     leap = new LeapDevice();
 }
 
+/*!
+ * \brief MainWindow::on_pushButton_clicked
+ */
 void MainWindow::on_pushButton_clicked()
 {
     startDeviceDiscovery();
 }
 
+/*!
+ * \brief MainWindow::on_connectButton_clicked
+ */
 void MainWindow::on_connectButton_clicked()
 {
     Drone *drone = new Drone(devices.value(ui->ListMAC->currentText()));
     controller = new DroneController(drone);
+}
+
+/*!
+ * \brief MainWindow::on_horizontalSlider_valueChanged
+ * \param value
+ */
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    ui->actionTime->display(value);
+}
+
+void MainWindow::on_addButton_clicked()
+{
+    QTreeWidgetItem *row = new QTreeWidgetItem();
+    row->setText(0, ui->listAction->currentText());
+    row->setText(1, QString::number(ui->horizontalSlider->value()));
+    ui->parcours->addTopLevelItem(row);
 }

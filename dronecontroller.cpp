@@ -37,26 +37,26 @@ void DroneController::storeCmd(QString handle, QString value, bool response)
  */
 void DroneController::send()
 {
-    if (stop_event.is_set() and self.drone.q.empty()){
-        self.drone.q.join();
-        self.gatt.sendeof();
-        self.gatt.terminate(True);
-        self.t_reader.stop();
-        self.t_reader.join();
-    } else {
-        cmd = self.drone.q.get();
-        if ("connect" in cmd.handle) {
-                self.gatt.sendline(cmd.handle);
-                self.drone.q.task_done();
-                continue;
-        }
-        if (not cmd.response) {
-            self.gatt.sendline(" ".join(["char-write-cmd", cmd.handle, cmd.value]));
-        } else {
-            self.gatt.sendline(" ".join(["char-write-req", cmd.handle, cmd.value]));
-            self.drone.q.task_done();
-        }
-    }
+//    if (stop_event.is_set() and self.drone.q.empty()){
+//        self.drone.q.join();
+//        self.gatt.sendeof();
+//        self.gatt.terminate(True);
+//        self.t_reader.stop();
+//        self.t_reader.join();
+//    } else {
+//        cmd = self.drone.q.get();
+//        if ("connect" in cmd.handle) {
+//                self.gatt.sendline(cmd.handle);
+//                self.drone.q.task_done();
+//                continue;
+//        }
+//        if (not cmd.response) {
+//            self.gatt.sendline(" ".join(["char-write-cmd", cmd.handle, cmd.value]));
+//        } else {
+//            self.gatt.sendline(" ".join(["char-write-req", cmd.handle, cmd.value]));
+//            self.drone.q.task_done();
+//        }
+//    }
 }
 
 /*

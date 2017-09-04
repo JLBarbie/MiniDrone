@@ -6,6 +6,7 @@
 #include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
 #include <QDebug>
 #include <QComboBox>
+#include <QTreeWidget>
 
 #include "leapdevice.h"
 #include "drone.h"
@@ -38,10 +39,11 @@ private:
 private slots :
     void deviceDiscovered(QBluetoothDeviceInfo device);
     void on_tabWidget_currentChanged(int index);
-
     void on_pushButton_clicked();
-
     void on_connectButton_clicked();
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_addButton_clicked();
 
 private:
     Ui::MainWindow *ui;
