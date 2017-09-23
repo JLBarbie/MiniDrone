@@ -10,8 +10,6 @@
 
 #include "leapdevice.h"
 #include "drone.h"
-#include "dronecontroller.h"
-
 
 #include <iostream>
 
@@ -45,10 +43,12 @@ private slots :
 
     void on_addButton_clicked();
 
+    void on_boardButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     LeapDevice *leap;
-    DroneController *controller;
+    Drone *drone;
     QMap<QString, QBluetoothAddress> devices;
 };
 

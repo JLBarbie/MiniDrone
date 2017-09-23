@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "flightwindow.h"
+
 #include <QLCDNumber>
 
 /*!
@@ -101,7 +103,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             qDebug("Emergency");
             break;
         case Qt::Key_Space:
-            controller->takeoff();
+            drone->takeoff();
             qDebug("Take Off");
             break;
         case Qt::Key_O:
@@ -126,18 +128,25 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     switch (key) {
         case Qt::Key_W:
             ui->forward->setEnabled(false);
+            break;
         case Qt::Key_S:
             ui->backward->setEnabled(false);
+            break;
         case Qt::Key_A:
             ui->left->setEnabled(false);
+            break;
         case Qt::Key_D:
             ui->right->setEnabled(false);
+            break;
         case Qt::Key_Up:
             ui->up->setEnabled(false);
+            break;
         case Qt::Key_Down:
             ui->down->setEnabled(false);
+            break;
         case Qt::Key_Right:
             ui->clock->setEnabled(false);
+            break;
         case Qt::Key_Left:
             ui->rev_clock->setEnabled(false);
         default:
@@ -195,8 +204,7 @@ void MainWindow::on_pushButton_clicked()
  */
 void MainWindow::on_connectButton_clicked()
 {
-    Drone *drone = new Drone(devices.value(ui->ListMAC->currentText()));
-    controller = new DroneController(drone);
+    drone = new Drone(devices.value(ui->ListMAC->currentText()));
 }
 
 /*!
@@ -214,4 +222,10 @@ void MainWindow::on_addButton_clicked()
     row->setText(0, ui->listAction->currentText());
     row->setText(1, QString::number(ui->horizontalSlider->value()));
     ui->parcours->addTopLevelItem(row);
+}
+
+void MainWindow::on_boardButton_clicked()
+{
+    FlightWindow *flightWindow = new FlightWindow;
+    flightWindow->show();
 }

@@ -36,7 +36,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="accueil">
        <attribute name="title">
@@ -45,7 +45,7 @@
        <widget class="QToolButton" name="connectButton">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>330</x>
           <y>390</y>
           <width>131</width>
           <height>41</height>
@@ -68,7 +68,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ressources.qrc">:/logo-home.jpg</pixmap>
+         <pixmap resource="ressources.qrc">:/drone.png</pixmap>
         </property>
        </widget>
        <widget class="QWidget" name="layoutWidget">
@@ -101,8 +101,15 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text">
-            <string>R</string>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="icon">
+            <iconset resource="ressources.qrc">
+             <normaloff>:/reload.png</normaloff>:/reload.png</iconset>
            </property>
           </widget>
          </item>
@@ -786,6 +793,46 @@
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Parametres</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="1">
+         <widget class="QPushButton" name="boardButton">
+          <property name="text">
+           <string>Lancer le tableau de bord</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

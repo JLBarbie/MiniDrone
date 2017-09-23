@@ -12,7 +12,7 @@ TARGET = Minidrone
 TEMPLATE = app
 RESOURCES = ressources.qrc
 
-LIBS += -g -L/usr/lib/Leap -lLeap
+LIBS += -g -L/usr/lib/Leap -lLeap -lqwt
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -28,14 +28,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        dronecontroller.cpp \
         leapdevice.cpp \
-    drone.cpp
+        drone.cpp \
+    flightwindow.cpp
 
-HEADERS  += mainwindow.h \
-        dronecontroller.h \
+HEADERS += mainwindow.h \
         leapdevice.h \
         leapeventlistener.h \
-    drone.h
+        drone.h \
+    flightwindow.h
 
-FORMS    += mainwindow.ui
+FORMS   += mainwindow.ui \
+    flightwindow.ui
