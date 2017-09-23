@@ -6,16 +6,16 @@ TODO
 
 
 # Example:
-"""
+```
 backward() {
 	send(BACKWARD);
 }
-"""
-"""
+```
+```
 send(BASE::TYPE move) {
 	write(uuid, move);
 }
-"""
+```
 
 # First
 TAKEOFF
