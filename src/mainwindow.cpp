@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "flightwindow.h"
+//#include "flightwindow.h"
 
 #include <QLCDNumber>
 
@@ -226,6 +226,6 @@ void MainWindow::on_addButton_clicked()
 
 void MainWindow::on_boardButton_clicked()
 {
-    FlightWindow *flightWindow = new FlightWindow;
-    flightWindow->show();
+//    FlightWindow *flightWindow = new FlightWindow;
+//    flightWindow->show();
 }
